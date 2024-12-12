@@ -3,7 +3,7 @@ package org.ghg;
 public class RevA {
 
 	public static void main(String [] args) {
-		String s= "Jagan";
+		String s= "Jagan gjkdj";
 		String s2= "";
 		//char c;
 		
