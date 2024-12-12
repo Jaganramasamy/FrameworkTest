@@ -4,7 +4,7 @@ public class Dup {
 
 	public static void main(String args[]) {
 		
-		String s ="Jagan Ramasamy R";
+		String s ="Jagan Ramasamy hrushikesh";
 		
 		char[] ch = s.toCharArray();
 		
