@@ -8,7 +8,7 @@ import java.util.Set;
 public class Occurr {
 public static void main(String[] args) {
 	
-	String s ="Jagan";
+	String s ="Jagan Rewres";
 	
 	char[] ch = s.toCharArray();
 	Map<Character,Integer> m= new LinkedHashMap<>();
