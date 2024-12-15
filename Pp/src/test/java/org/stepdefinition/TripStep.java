@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -105,18 +106,54 @@ public class TripStep {
 	WebDriverWait wait = new WebDriverWait(w, null);
 	wait.withTimeout(java.time.Duration.ofSeconds(60));
 	wait.until(ExpectedConditions.elementToBeClickable(hotel));
-		//Thread.sleep(10000);
+		Thread.sleep(10000);
 	a.moveToElement(hotel);
 	a.click(hotel).build().perform();
 		//wait.until(ExpectedConditions.elementToBeClickable(hotel));
-		hotel.click();
+		//hotel.click();
+	}
+	
+	@Then("print the price")
+	public void print_the_price() {
+		try {
+		w.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
+		
+		WebElement price = w.findElement(By.xpath("//a[contains(text(),'Taj Wellington Mews, Chennai')]/parent::div/parent::div/parent::div/parent::div/descendant::p[@class='HotelCardV2styles__OfferPrice-sc-6przws-18 cSoWUu']"));
+		
+		String amount = price.getText();
+		System.out.println("The amount is  "+amount);
+		}catch(Exception e){
+		
+		System.out.println("unable to get the text");
+	    
+		}
 	}
 //
-//	@Then("Choose the rooms and amount")
-//	public void choose_the_rooms_and_amount() {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
+	@Then("Choose the rooms and amount")
+	public void choose_the_rooms_and_amount() {
+		
+		String purl = w.getWindowHandle();
+		
+		Set<String> curl = w.getWindowHandles();
+		for(String child:curl) {
+			
+			if(!(purl.equals(child))) {
+				w.switchTo().window(child);
+			}
+		}
+	   
+	    WebElement amount2 = w.findElement(By.xpath("(//h3[text()='Studio Room with Balcony King Bed']/parent::div/parent::div/parent::div/descendant::div[@class='RoomFlavorstyles__ActualPriceTextStyled-sc-90vv8b-13 kAQtPz'])[2]"));
+	    
+	    String amt2 = amount2.getText();
+	    
+	    System.out.println("The actual amount is "+ amt2);
+	    
+	    WebElement selectamt = w.findElement(By.xpath("(//h3[text()='Studio Room with Balcony King Bed']/parent::div/parent::div/parent::div/descendant::button[text()='Select'])[2]"));
+	    
+	    selectamt.click();
+	    
+	    
+    }
 //
 //	@Then("Go to payment tab")
 //	public void go_to_payment_tab() {

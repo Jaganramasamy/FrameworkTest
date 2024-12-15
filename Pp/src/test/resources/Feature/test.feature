@@ -9,8 +9,9 @@ Feature: Title of your feature
     And Sign up the page
     When Enter the travel destination
     And Choose the dates
+    Then print the price
     And Select the hotels
     Then Choose the rooms and amount
-    And Go to payment tab
+   # And Go to payment tab
 
  
